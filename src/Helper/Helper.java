@@ -80,4 +80,38 @@ public class Helper {
 
 
     }
+
+    public static String hotelType (String number)
+    {
+        String type="";
+        switch (number){
+            case"1":
+                type="Ultra Herşey Dahil";
+                break;
+            case"2":
+                type="Herşey Dahil";
+                break;
+            case"3":
+                type="Oda Kahvaltı";
+                break;
+            case"4":
+                type="Full Pansiyon";
+                break;
+            case"5":
+                type="Yarım Pansiyon";
+                break;
+            case"6":
+                type="Sadece Oda";
+                break;
+            case"7":
+                type="Ultra (Alkol Hariç)";
+                break;
+        }
+        return type;
+    }
+
+    public static boolean isAreaEmpty(JTextPane textareaHotelProperty) {
+        return textareaHotelProperty.getText().trim().isEmpty();
+
+    }
 }

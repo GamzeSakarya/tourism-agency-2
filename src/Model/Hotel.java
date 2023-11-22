@@ -137,7 +137,7 @@ public class Hotel {
 
     }
 
-    private static Hotel getFetch (String email)
+    public static Hotel getFetch(String email)
     {
         Hotel obj = null;
         String query = "SELECT * FROM hotel WHERE email=?";
