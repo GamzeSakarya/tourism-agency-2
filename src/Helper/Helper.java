@@ -4,41 +4,44 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Helper {
-    public static void setLayout(){
-        for(UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()){
-            if("Nimbus".equals(info.getName())){
+    public static void setLayout() {
+        for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
                 try {
                     UIManager.setLookAndFeel(info.getClassName());
-                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                         UnsupportedLookAndFeelException e) {
                     e.printStackTrace();
                 }
                 break;
             }
         }
     }
-    public static int screenCenter (String eksen, Dimension size){
+
+    public static int screenCenter(String eksen, Dimension size) {
         int point;
-        switch (eksen){
+        switch (eksen) {
             case "x":
-                point = (Toolkit.getDefaultToolkit().getScreenSize().width - size.width) /2;
+                point = (Toolkit.getDefaultToolkit().getScreenSize().width - size.width) / 2;
                 break;
             case "y":
-                point = (Toolkit.getDefaultToolkit().getScreenSize().height - size.height)/2;
+                point = (Toolkit.getDefaultToolkit().getScreenSize().height - size.height) / 2;
                 break;
             default:
                 point = 0;
         }
         return point;
     }
-    public static boolean isFieldEmpty(JTextField field){
+
+    public static boolean isFieldEmpty(JTextField field) {
         return field.getText().trim().isEmpty();
     }
 
-    public static void showMsg(String str){
+    public static void showMsg(String str) {
         String msg;
         String title;
 
-        switch (str){
+        switch (str) {
             case "fill":
                 msg = "Lütfen tüm alanları doldurunuz !";
                 title = "Hata !";
@@ -46,11 +49,11 @@ public class Helper {
 
             case "done":
                 msg = "İşlem başarılı !";
-                title= "Sonuç ";
+                title = "Sonuç ";
                 break;
             case "error":
                 msg = "Bir hata oluştu !";
-                title= "Hata !";
+                title = "Hata !";
                 break;
             default:
                 msg = str;
@@ -60,20 +63,20 @@ public class Helper {
 
     }
 
-    public static boolean confirm(String str){
+    public static boolean confirm(String str) {
         optionPageTR();
         String msg;
-        switch (str){
+        switch (str) {
             case "sure":
                 msg = "Bu işlemi gerçekleştirmek istediğinize emin misiniz ?";
                 break;
             default:
                 msg = str;
         }
-        return JOptionPane.showConfirmDialog(null, msg, "Son kararın mı ?", JOptionPane.YES_NO_OPTION) == 0 ;
+        return JOptionPane.showConfirmDialog(null, msg, "Son kararın mı ?", JOptionPane.YES_NO_OPTION) == 0;
     }
 
-    public static void optionPageTR(){
+    public static void optionPageTR() {
         UIManager.put("OptionPane.okButtonText", "Tamam");
         UIManager.put("OptionPane.yesButtonText", "Evet");
         UIManager.put("OptionPane.noButtonText", "Hayır");
@@ -81,30 +84,29 @@ public class Helper {
 
     }
 
-    public static String hotelType (String number)
-    {
-        String type="";
-        switch (number){
-            case"1":
-                type="Ultra Herşey Dahil";
+    public static String hotelType(String number) {
+        String type = "";
+        switch (number) {
+            case "1":
+                type = "Ultra Herşey Dahil";
                 break;
-            case"2":
-                type="Herşey Dahil";
+            case "2":
+                type = "Herşey Dahil";
                 break;
-            case"3":
-                type="Oda Kahvaltı";
+            case "3":
+                type = "Oda Kahvaltı";
                 break;
-            case"4":
-                type="Full Pansiyon";
+            case "4":
+                type = "Full Pansiyon";
                 break;
-            case"5":
-                type="Yarım Pansiyon";
+            case "5":
+                type = "Yarım Pansiyon";
                 break;
-            case"6":
-                type="Sadece Oda";
+            case "6":
+                type = "Sadece Oda";
                 break;
-            case"7":
-                type="Ultra (Alkol Hariç)";
+            case "7":
+                type = "Ultra (Alkol Hariç)";
                 break;
         }
         return type;
@@ -113,5 +115,27 @@ public class Helper {
     public static boolean isAreaEmpty(JTextPane textareaHotelProperty) {
         return textareaHotelProperty.getText().trim().isEmpty();
 
+    }
+
+    public static String roomProperty(String number) {
+        String property = "";
+        switch (number) {
+            case "1":
+                property = "Televizyon";
+                break;
+            case "2":
+                property = "Minibar";
+                break;
+            case "3":
+                property = "Oyun Konsolu";
+                break;
+            case "4":
+                property = "Kasa";
+                break;
+            case "5":
+                property = "Projeksiyon";
+                break;
+        }
+        return property;
     }
 }

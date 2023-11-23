@@ -8,6 +8,8 @@ import Model.HotelSeason;
 import Model.HotelType;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class HotelAddGUI extends JFrame {
     private final Employee employee;
@@ -125,8 +127,26 @@ public class HotelAddGUI extends JFrame {
 
 
         });
-    }
+        btn_hotel_add.addActionListener(e -> {
+           if(Helper.isFieldEmpty(fld_hotel_name) || Helper.isAreaEmpty(textarea_hotel_property) || Helper.isAreaEmpty(textarea_hotel_address) || Helper.isFieldEmpty(fld_hotel_phone) || Helper.isFieldEmpty(fld_hotel_email) || (!radioButton1.isSelected() && !radioButton2.isSelected() && !radioButton3.isSelected() && !radioButton4.isSelected() && !radioButton5.isSelected() && !radioButton6.isSelected() && !radioButton7.isSelected()) || Helper.isFieldEmpty(fld_hotel_season_start1) || Helper.isFieldEmpty(fld_hotel_season_end1)) {
 
+               Helper.showMsg("fill");
+              }else{
+                String name = fld_hotel_name.getText();
+                String star = (String) cmb_hotel_star.getSelectedItem();
+                String property = textarea_hotel_property.getText();
+                String address = textarea_hotel_address.getText();
+                String phone = fld_hotel_phone.getText();
+                String email = fld_hotel_email.getText();
+                String season_start1 = fld_hotel_season_start1.getText();
+                String season_end1 = fld_hotel_season_end1.getText();
+                String season_start2 = fld_hotel_season_start2.getText();
+                String season_end2 = fld_hotel_season_end2.getText();
+           }
+    });
+
+
+}
     public static void main(String[] args) {
         Helper.setLayout();
         new HotelAddGUI(new Employee());

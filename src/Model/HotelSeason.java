@@ -1,6 +1,9 @@
 package Model;
 
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import Helper.DBConnect;
 
 public class HotelSeason {
@@ -49,7 +52,7 @@ public class HotelSeason {
     }
 
     public static boolean add(int hotel_id, String season_start, String season_end) {
-        String sql = "INSERT INTO hotel_season (hotel_id, season_start, season_end) VALUES (?,?,?)";
+        String sql = "INSERT INTO season (hotel_id, season_start, season_end) VALUES (?,?,?)";
         try {
             PreparedStatement pr = DBConnect.getInstance().prepareStatement(sql);
             pr.setInt(1, hotel_id);
@@ -61,5 +64,48 @@ public class HotelSeason {
 
         }
         return false;
+    }
+    public static ArrayList<HotelSeason> getListByHotelID(int id){
+        ArrayList<HotelSeason> hotelSeasonList = new ArrayList<>();
+        HotelSeason obj;
+        String query = "SELECT * FROM season WHERE hotel_id = ?";
+        try{
+            PreparedStatement pr = DBConnect.getInstance().prepareStatement(query);
+            pr.setInt(1,id);
+            var data = pr.executeQuery();
+            while (data.next()){
+                obj = new HotelSeason(
+                        data.getInt("id"),
+                        data.getInt("hotel_id"),
+                        data.getString("season_start"),
+                        data.getString("season_end")
+                );
+                hotelSeasonList.add(obj);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return hotelSeasonList;
+    }
+
+    public static HotelSeason getFetch(int id){
+        HotelSeason obj = null;
+        String query = "SELECT * FROM season WHERE id = ?";
+        try{
+            PreparedStatement pr = DBConnect.getInstance().prepareStatement(query);
+            pr.setInt(1,id);
+            var data = pr.executeQuery();
+            if (data.next()){
+                obj = new HotelSeason(
+                        data.getInt("id"),
+                        data.getInt("hotel_id"),
+                        data.getString("season_start"),
+                        data.getString("season_end")
+                );
+            }
+    }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return obj;
     }
 }

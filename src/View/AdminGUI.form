@@ -119,7 +119,7 @@
                         <properties>
                           <model>
                             <item value="admin"/>
-                            <item value="acente"/>
+                            <item value="employee"/>
                           </model>
                         </properties>
                       </component>
